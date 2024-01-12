@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="https://github.com/smurfy/cloud-zoom/blob/master/cloud-zoom.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+  <title>Monument</title>
+  <style>
+    body {
+      margin: 0 !important;
+    }
+
+    .header {
+      background-image: url("images/persepolisa.jpg");
+      background-size: cover;
+      background-position: center center;
+      height: 700px;
+    }
+
+    @media (min-width: 300px) and (max-width: 750px) {
+      .header {
+        height: 400px;
+        background-size: cover;
+      }
+    }
+
+    nav {
+      margin: 10px auto 0;
+      position: relative;
+      left: 360px;
+      top: 5px;
+      width: 590px;
+      height: 50px;
+      background-color: #34495e;
+      border-radius: 8px;
+      font-size: 0;
+      z-index: 1;
+    }
+
+    nav a.nav-link {
+      line-height: 50px;
+      height: 100%;
+      font-size: 15px;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-align: center;
+      color: white;
+      cursor: pointer;
+    }
+
+    nav .animation {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      z-index: 0;
+      transition: all 0.5s ease 0s;
+      border-radius: 8px;
+    }
+
+    nav a.nav-link:nth-child(1) {
+      width: 100px;
+    }
+
+    nav a.nav-link:nth-child(2) {
+      width: 110px;
+    }
+
+    nav a.nav-link:nth-child(3) {
+      width: 100px;
+    }
+
+    nav a.nav-link:nth-child(4) {
+      width: 160px;
+    }
+
+    nav a.nav-link:nth-child(5) {
+      width: 120px;
+    }
+
+    nav .start-home,
+    a.nav-link:nth-child(1):hover~.animation {
+      width: 100px;
+      left: 0;
+      background-color: #1abc9c;
+    }
+
+    nav .start-about,
+    a.nav-link:nth-child(2):hover~.animation {
+      width: 110px;
+      left: 100px;
+      background-color: #e74c3c;
+    }
+
+    nav .start-blog,
+    a.nav-link:nth-child(3):hover~.animation {
+      width: 100px;
+      left: 210px;
+      background-color: #3498db;
+    }
+
+    nav .start-portefolio,
+    a.nav-link:nth-child(4):hover~.animation {
+      width: 160px;
+      left: 310px;
+      background-color: #9b59b6;
+    }
+
+    nav .start-contact,
+    a.nav-link:nth-child(5):hover~.animation {
+      width: 120px;
+      left: 470px;
+      background-color: #e67e22;
+    }
+
+    @media (min-width: 300px) and (max-width: 750px) {
+      nav {
+        width: 100%;
+        left: 0;
+        top: 0;
+      }
+
+      nav a.nav-link {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+    }
+
+    .n-icon,
+    .p-icon {
+      color: #fff;
+      padding: 0.5em;
+      cursor: pointer;
+      background: #af77ab;
+      border-radius: 62px;
+      /*border-top: 1px solid #FFF;
+      box-shadow: 0 2px 0 #fff;*/
+      transition: box-shadow 0.1s, top 0.1s;
+      width: fit-content !important;
+    }
+
+    .n-icon {
+      position: relative;
+      top: 120px;
+      right: -270px;
+    }
+
+    .p-icon {
+      position: relative;
+      top: 90px;
+      left: -150px;
+    }
+
+    .n-icon:hover,
+    .p-icon:hover {
+      color: #bab9bb;
+      text-decoration: bold;
+    }
+
+    .n-icon:active,
+    .p-icon:active {
+      box-shadow: 0 1px 0 #999;
+    }
+
+    .gallery {
+      --s: 170px;
+      display: grid;
+      transform-style: preserve-3d;
+      animation: r 30s linear infinite;
+      /*animation: calc();*/
+      position: relative;
+      top: -55px;
+    }
+
+    @keyframes r {
+      0% {
+        transform: perspective(600px) rotateX(-100deg) rotate(0deg);
+      }
+
+      to {
+        transform: perspective(600px) rotateX(-100deg) rotate(-360deg);
+      }
+    }
+
+    .gallery>img {
+      grid-area: 1/1;
+      width: var(--s);
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+      transform: rotate(var(--_a)) translateY(120%) rotateX(90deg);
+      image-rendering: high-quality;
+    }
+
+    .gallery>img:nth-child(1) {
+      --_a: 0deg;
+    }
+
+    .gallery>img:nth-child(2) {
+      --_a: 60deg;
+    }
+
+    .gallery>img:nth-child(3) {
+      --_a: 120deg;
+    }
+
+    .gallery>img:nth-child(4) {
+      --_a: 180deg;
+    }
+
+    .gallery>img:nth-child(5) {
+      --_a: 240deg;
+    }
+
+    .gallery>img:nth-child(6) {
+      --_a: 300deg;
+    }
+
+    .gallery::before {
+      content: "";
+      position: absolute;
+      inset: -100%;
+      clip-path: polygon(50% 0,
+          calc(50% + 0.866 * 50%) 25%,
+          calc(50% + 0.866 * 50%) 75%,
+          50% 100%,
+          calc(50% - 0.866 * 50%) 75%,
+          calc(50% - 0.866 * 50%) 25%);
+      /*background: #caecf3;*/
+      transform: translateZ(calc(var(--s) / 2)) rotate(90deg);
+    }
+
+    .introduction {
+      margin: 0;
+      min-height: 70vh;
+      display: grid;
+      place-content: center;
+      background: #323160;
+      overflow: hidden;
+    }
+
+    .details {
+      background-image: url("./images/4persepolis.jpeg");
+      background-size: cover;
+      background-attachment: scroll;
+      width: 100%;
+      max-width: 5000px;
+      height: auto;
+      min-height: 100vh;
+      opacity: 0.9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .explain {
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      text-decoration: #000 !important;
+      line-height: 1.5rem;
+      margin: 10px 25px;
+      text-align: justify;
+      display: block;
+      margin: 15px auto;
+      border: 3px solid rgba(255, 255, 255, 0.911);
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.7);
+      max-width: 65%;
+      top: 50%;
+      transform: translateY(0%);
+      padding: 0.5em;
+    }
+
+    .item {
+      display: flex;
+      flex-direction: row;
+      align-items: space-between;
+      width: 100%;
+      /*clear: both;*/
+      margin: 35px 0px;
+    }
+
+    .thumb_wrapper {
+      width: 290px;
+      height: 107px;
+      position: relative;
+      float: left;
+      margin: 20px 40px 0px 0px;
+    }
+
+    .thumb_wrapper a.prev,
+    .thumb_wrapper a.next {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 50%;
+      margin-top: -15px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .thumb_wrapper a.prev {
+      left: 0px;
+      background: transparent url("./images/left_icon.png") no-repeat top left;
+    }
+
+    .thumb_wrapper a.next {
+      right: 0px;
+      background: transparent url("./images/right_icon.png") no-repeat top left;
+    }
+
+    .thumb_wrapper span {
+      display: block;
+      text-align: center;
+      font-size: 11px;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    .thumb {
+      margin-left: 40px;
+      width: 210px;
+      height: 107px;
+      overflow: hidden;
+      -moz-box-shadow: 1px 1px 3px #555;
+      -webkit-box-shadow: 1px 1px 3px #555;
+      box-shadow: 1px 1px 3px #555;
+    }
+
+    .thumb ul {
+      list-style: none;
+      width: 200px;
+      height: 107px;
+      padding-left: 2px !important;
+    }
+
+    .thumb ul li {
+      float: left;
+    }
+
+    .thumb ul li a img {
+      border: 5px solid #fff;
+    }
+
+    .description {
+      width: 620px;
+      float: right;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      text-decoration: #000 !important;
+      line-height: 1.5rem;
+      text-align: justify;
+    }
+
+    @media only screen and (max-width: 800px) {
+      .item {
+        flex-direction: column;
+      }
+
+      .thumb_wrapper {
+        width: 90%;
+        margin: 20px 5% 0px 5%;
+      }
+
+
+      .thumb {
+        margin-left: 5%;
+        width: 90%;
+      }
+
+      .description {
+        width: 90%;
+        /*float: none;*/
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .thumb_wrapper {
+        width: 100%;
+        margin: 20px 0px 0px 0px;
+      }
+
+      .thumb {
+        margin-left: 0px;
+        width: 100%;
+      }
+
+      .description {
+        width: 100%;
+        /*float: none;*/
+      }
+    }
+
+
+    .wonders {
+      background-image: url("./images/49persepolis.jpg");
+      background-size: cover;
+      background-attachment: scroll;
+      width: 100%;
+      max-width: 5000px;
+      height: auto;
+      min-height: 100vh;
+      opacity: 0.9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    h1,
+    h3 {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-weight: bolder;
+      text-align: center;
+    }
+
+
+    .reserver_footer_ctr {
+      text-align: center;
+      /* background: #da9898;*/
+      background: #323160;
+      color: #fff;
+      padding: 0.5% 0;
+    }
+
+    .reserver_footer_ct a.primary-link {
+      border-radius: 62px;
+      /* background: #db383b;
+      border-color: #db383b;*/
+      background: #af77ab;
+      border-width: 0;
+      color: #fff;
+      font-weight: normal;
+      font-size: 15px;
+      line-height: 1.4;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      opacity: 1 !important;
+      margin: 2px;
+      padding: 0.5em;
+    }
+
+    .reserver_footer img {
+      display: inline-block;
+    }
+
+    .reserver_footer_ct {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .reserver_footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      /*text-align: center;
+        display: table;
+        width: 100%;*/
+    }
+
+    .scroll-to-top {
+      position: relative;
+      top: 10px;
+      max-height: 2px !important;
+      max-width: 2px !important;
+      bottom: 5px;
+      right: 5px;
+      background-color: transparent;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body id="all">
+  <div class="header">
+    <nav class="fixed-top">
+      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="Persepolis.html#about">About</a>
+      <a class="nav-link" href="Persepolis.html#fancy">Explore</a>
+      <a class="nav-link" href="Persepolis.html#footer">Prices and Times</a>
+      <a class="nav-link" href="#">Contact</a>
+      <div class="animation start-home"></div>
+    </nav>
+    <a id="top"></a>
+  </div>
+
+
+  <div class="introduction">
+    <div class="gallery">
+      <img src="images/title-a.jpg" alt="column" />
+      <img src="images/title-b-high.jpeg" alt="gate" />
+      <img src="images/title-c-high.jpg" alt="preview" />
+      <img src="images/title-d.jpg" alt="whole area" />
+      <img src="images/title-h.jpg" alt="lion head" />
+      <img src="images/title-g-high.jpeg" alt="city" />
+    </div>
+    <div class="n-icon">Next</div>
+    <div class="p-icon">Prev</div>
+  </div>
+
+  <section>
+    <div class="details" id="about">
+      <div class="explain">
+        <p>
+        <h1>Unveiling Persepolis: A Journey Through the Ruins of an Ancient Persian Empire
+        </h1>
+
+        Persepolis, also known as Takht-e Jamshid, was the ceremonial capital
+        of the Achaemenid Empire, which existed from the 6th century BC to 330
+        BC. It is located in the plains of Marvdasht, Fars Province, Iran,
+        and is encircled by the southern Zagros mountains of the Iranian
+        plateau. The ruins of Persepolis were declared a UNESCO World
+        Heritage Site in 1979.
+        <br>The complex is situated on a walled platform
+        and comprises five halls of varying sizes and grand entrances. The
+        function of Persepolis remains unclear, but it appears to have been a
+        grand ceremonial complex that was only occupied seasonally. The
+        complex was used for celebrating Nowruz, the Persian New Year, held at
+        the spring equinox, which is still an important annual festivity in
+        modern Iran. The Iranian nobility and the tributary parts of the
+        empire came to present gifts to the king, as represented in the
+        stairway reliefs.
+        <br> The ruins of Persepolis exemplify the Achaemenid
+        style of architecture. The complex was taken by the army of
+        Alexander the Great in 330 BC, and soon after, its wooden parts were
+        completely destroyed by fire, likely deliberately. The exploration
+        of Persepolis from the early 17th century led to the modern
+        rediscovery of cuneiform writing and, from detailed studies of the
+        trilingual Achaemenid royal inscriptions found on the ruins, the
+        initial decipherment of cuneiform in the early 19th century.
+        </p>
+      </div>
+  </section>
+  <div class="context" id="fancy">
+    <div class="item">
+      <div class="thumb_wrapper">
+        <div class="thumb">
+          <ul style="width: 840px;">
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group1"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/explanation-a.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src=images/Thumbs/explanation-a.jpg alt=" Formstack 1"
+                    style="display: block"></a>
+                <div class="mousetrap"
+                  style="background-image: url(&quot;.&quot;); z-index: 999; position: absolute; width: 210px; height: 107px; left: 0px; top: 0px; cursor: move;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group1"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/explanation-b.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/explanation-b.jpg" alt="Formstack 1"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image: url(&quot;.&quot;); z-index: 999; position: absolute; width: 210px; height: 107px; left: 0px; top: 0px; cursor: move;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group1"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/explanation-c.jpg" data-width="800" data-height="600"
+                  style="position: relative; display: block;"><img src="images/Thumbs/explanation-c.jpg"
+                    alt="Formstack 1" style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image: url(&quot;.&quot;); z-index: 999; position: absolute; width: 210px; height: 107px; left: 0px; top: 0px; cursor: move;">
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a class="prev" href="#"></a>
+        <a class="next" href="#"></a>
+        <span> Click to view</span>
+      </div>
+
+      <div class="description">
+        <h2>History</h2>
+        <p>
+          Takht-e Jamshid, also known as Persepolis, is a symbol of Persian
+          civilization in Iran. Located near Marvdasht Shiraz, this tourist
+          attraction showcases the grandeur of ancient Iranian palace
+          architecture. Built by Achaemenid kings in the mountains near Shiraz,
+          it leaves a lasting impression of their reign. Takht-e Jamshid is
+          known in the world as "Persepolis" which is a Greek name. The columns,
+          capitals, inscriptions, reliefs, palaces, and gates that remain in the
+          Takht-e Jamshid complex are among the most famous works of
+          civilization in the world. Constructed about 25 centuries ago by
+          Darius the Achaemenid, it involved numerous architects, artists, and
+          workers, who were fairly compensated. The construction took around 120
+          years, and its outstanding culture has significantly contributed to
+          the fame of ancient Iranian civilization.”
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="thumb_wrapper">
+        <div class="thumb">
+          <ul style="width: 840px;">
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group2"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group2-a.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group2-a.jpg" alt="Knowapp 1"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image: url(&quot;.&quot;); z-index: 999; position: absolute; width: 210px; height: 107px; left: 0px; top: 0px; cursor: move;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group2"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group2-b.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group2-b.jpg" alt="Knowapp 2"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group2"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group2-c.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group2-c.jpg" alt="Knowapp 3"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group2"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group2-d.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group2-d.jpg" alt="Knowapp 4"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a class="prev" href="#"></a>
+        <a class="next" href="#"></a>
+        <span>Click to view</span>
+      </div>
+
+      <div class="description">
+        <h2>Built to Last</h2>
+        <p>
+          Persepolis, built by Darius I over 2,500 years ago, is a testament to
+          the Achaemenid Empire’s architectural mastery. Each palace, reflecting
+          its era’s grandeur, was constructed under different Achaemenid kings.
+          The construction involved years of labor, with workers carving and
+          transporting massive stones. Beyond its physical beauty, Persepolis
+          symbolizes the Achaemenids’ cultural and technological achievements.
+          The site near Marvdasht was strategically chosen for its geographical
+          advantages. Numerous restoration efforts have preserved Persepolis
+          from decay, unearthing many artifacts and inscriptions. However, many
+          artifacts have been lost to foreign museums. Current measures aim to
+          protect and preserve this remarkable site.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="thumb_wrapper">
+        <div class="thumb">
+          <ul style="width: 840px;">
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group3"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group3-a.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group3-a.jpg" alt="Rocket 1"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image: url(&quot;.&quot;); z-index: 999; position: absolute; width: 210px; height: 107px; left: 0px; top: 0px; cursor: move;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group3"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group3-b.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group3-b.jpg" alt="Rocket 2"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group3"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group3-c.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group3-c.jpg" alt="Rocket 3"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group3"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group3-d.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group3-d.jpg" alt="Rocket 4"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a class="prev" href="#"></a>
+        <a class="next" href="#"></a>
+        <span>Click to view</span>
+      </div>
+
+      <div class="description">
+        <h2>Before being ruined</h2>
+        <p>
+          Persepolis, an emblem of Achaemenid magnificence, met a tragic end in
+          334 BC under the destructive fury of Alexander the Great. His
+          relentless onslaught decimated Xerxes’ palace, leading to the
+          widespread ruin of the city. Before this catastrophe, Persepolis was a
+          beacon of architectural innovation and sophisticated urban planning.
+          Cradled at the base of Mount Rahmat, the city showcased a meticulously
+          planned layout, picturesque palaces, and state-of-the-art water and
+          sewage systems. The interior design of Persepolis exuded contemporary
+          elegance, with each palace uniquely designed to host various
+          ceremonies and festivities. The city’s architecture, landscaping, and
+          urban design were a testament to the glory of ancient Iran, a legacy
+          that continues to resonate even after 2,500 years.
+        </p>
+      </div>
+    </div>
+
+
+    <div class="item">
+      <div class="thumb_wrapper">
+        <div class="thumb">
+          <ul style="width: 840px;">
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group4"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group4-a.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group4-a.jpg" alt="TemplateSold 1"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group4"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group4-b.jpg" style="position: relative; display: block;"><img
+                    src="images/Thumbs/group4-b.jpg" alt="TemplateSold 2" style="display: block;" data-width="800"
+                    data-height="600"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group4"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group4-c.jpg" style="position: relative; display: block;"><img
+                    src="images/Thumbs/group4-c.jpg" alt="TemplateSold 3" style="display: block;" data-width="800"
+                    data-height="600"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group4"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group4-d.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group4-d.jpg" alt="TemplateSold 4"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group4"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group4-e.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group4-e.jpg" alt="TemplateSold 4"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div id="wrap" style="top:0px;z-index:9999;position:relative;"><a rev="group4"
+                  rel="zoomHeight:200, zoomWidth:400, adjustX: 10, adjustY:-4, position:'body'" class="cloud-zoom"
+                  data-fancybox="images" href="images/group4-f.jpg" style="position: relative; display: block;"
+                  data-width="800" data-height="600"><img src="images/Thumbs/group4-f.jpg" alt="TemplateSold 4"
+                    style="display: block;"></a>
+                <div class="mousetrap"
+                  style="background-image:url(&quot;.&quot;);z-index:999;position:absolute;width:210px;height:107px;left:0px;top:0px;">
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a class="prev" href="#"></a>
+        <a class="next" href="#"></a>
+        <span>Click to view</span>
+      </div>
+      <div class="description">
+
+        <h2>Masonry and relief motifs of Persepolis</h2>
+        <p>
+          Persepolis’ stone inscriptions and reliefs are precious artifacts
+          offering insights into the Achaemenid Empire. They’re still under
+          study by global researchers. The works, from the reigns of Darius I,
+          Xerxes, and Ardeshir I, reveal the tools used in carvings, including
+          melted lead and leather for protection. Traces of paint and ornamental
+          stones on statues indicate the use of colors and decorations. The
+          exact time of excavations is unknown, but the intricate work suggests
+          months or years of effort. All palaces in Persepolis feature embossed
+          motifs, with most praising Achaemenid kings. The Apadana Palace in
+          Persepolis features well-preserved reliefs depicting the king, his
+          court, and soldiers. Over 800 motifs are carved on the palace walls,
+          with images of Persian archers and servants, and depictions of
+          Achaemenid soldiers on the palaces of Khashayarshah, Dariush, and
+          Ardeshir. The western sides of these palaces feature images of
+          subordinate nations. In total, over 3000 reliefs are found across
+          Persepolis, all sharing common concepts. Research on these reliefs,
+          started by an American archaeology team in the 1930s, continues today.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wonders">
+    <div class="explain">
+      <p>
+
+      <h3>Wonders of Persepolis</h3>
+
+      The construction of Persepolis, the ceremonial capital of the
+      Achaemenid Empire, was a remarkable feat of engineering and
+      architecture,
+      <br>
+      1-Persepolis, built over centuries, showcased the
+      Achaemenid Empire’s wealth and power through grand palaces and
+      intricate carvings. Notably, unlike other empires, the Achaemenids
+      treated their construction workers fairly.<br>
+      2- Persepolis workers were
+      compensated and insured. Architects used innovative techniques,
+      including the golden ratio and earthquake-resistant designs, to ensure
+      the city’s longevity. <br>
+      3- The decorative elements of Persepolis were
+      equally impressive. Bas-reliefs adorned the walls, depicting scenes of
+      royal processions, battles, and mythical creatures.<br>
+      4- Persepolis’
+      reliefs display the empire’s artistic skill and power. The city’s
+      construction, showcasing grand palaces and intricate carvings,
+      exemplifies the Achaemenid Empire’s architectural ingenuity.
+      Persepolis’ columns, carved for precise fit, allowed flexibility
+      during earthquakes, a technique known as “dry stone masonry.” The
+      city’s walls featured intricate carvings, once embellished with
+      jewels.<br>
+      5- These carvings depicted scenes of royal processions,
+      battles, and mythical creatures, showcasing the empire's artistic
+      prowess. Social Equality The stone inscriptions of Persepolis reveal a
+      society that valued social equality.<br>
+      6- During the Achaemenid period,
+      men and women had equal social rights, including the right to work and
+      inherit property. This progressive stance towards gender equality was
+      remarkable for its time. Construction Techniques The construction of
+      Persepolis involved moving massive stone slabs, some weighing up to
+      250 tons.<br>
+      7- Historians believe that simple levers were used to
+      transport these stones from nearby quarries to the construction site.
+      Advanced Tools The fine carvings on the buildings of Persepolis
+      demonstrate the advanced tools and techniques employed by Achaemenid
+      stonemasons. These tools, which included chisels and hammers, allowed
+      them to create intricate designs with remarkable precision. Palaces
+      and Structures The palaces of Persepolis were built on a massive
+      terrace, with Apadana Palace being the largest and most impressive. The palace complex included numerous halls,
+      chambers, and courtyards,
+      all decorated with elaborate carvings and reliefs.
+      </p>
+    </div>
+  </div>
+
+  <div class="reserver_footer_ctr">
+    <div class="max_width2">
+      <p class="title8w">Book a ticket</p>
+
+      <div class="reserver_footer" id="footer">
+        <div class="reserver_footer_ct">
+          <img width="77" height="69" src="images/schedule.png" alt="Save time, buy your tickets online" />
+        </div>
+        <div class="reserver_footer_ct">
+          <p class="reserver_aside_txt">Save time, buy your tickets online</p>
+        </div>
+        <div class="reserver_footer_ct">
+          <a class="primary-link" href="#" hreflang="en" target="_blank">
+            Buy a ticket
+        </div>
+
+      </div>
+
+    </div>
+    <div>
+      <a class="scroll-to-top" href="#top"><img width="30px" height="30px" src="images/up-arrow.png"
+          alt="Back to top" /></a>
+    </div>
+    <div class="footer">
+      <p class="text-center mt-5">
+        <a href="https://github.com/biotech-Dlvr/Advanced-Tools" target="_blank">GitHub repository</a>
+        by Azar Delavari
+      </p>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <script type="text/javascript" src="https://github.com/smurfy/cloud-zoom/blob/master/cloud-zoom.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var gallery = document.querySelector(".gallery");
+      var nextButton = document.querySelector(".n-icon");
+      var prevButton = document.querySelector(".p-icon");
+
+      // Set the initial rotation
+      var rotation = 0;
+
+      // Function to update the rotation
+      function updateRotation() {
+        gallery.style.transform = 'perspective(400px) rotateX(-100deg) rotate(' + rotation + 'deg)';
+      }
+
+      // Add event listener for next button
+      nextButton.addEventListener('click', function () {
+        rotation -= 60; // Change this value to adjust the rotation per click
+        gallery.style.animation = 'none';
+        updateRotation();
+      });
+
+      // Add event listener for prev button
+      prevButton.addEventListener('click', function () {
+        rotation += 60;
+        gallery.style.animation = 'none';
+        updateRotation();
+      });
+    });
+
+    var $ = jQuery.noConflict();
+    jQuery(document).ready(function ($) {
+      $("#fancy .cloud-zoom").fancybox({
+        transitionIn: "elastic",
+        transitionOut: "none",
+        speedIn: 600,
+        speedOut: 200,
+        overlayShow: true,
+        overlayColor: "#000",
+        cyclic: true,
+        easingIn: "easeInOutExpo",
+      });
+    });
+
+    /* $("#fancy .mousetrap").live('click', function () {
+       $(this).prev().trigger('click');
+     });*/
+
+    $(document).on('click', '#fancy .mousetrap', function () {
+      $(this).prev().trigger('click');
+    });
+
+
+    var $fancy = $("#fancy"),
+      $thumb_list = $fancy.find(".thumb > ul");
+
+    $thumb_list.each(function () {
+      var $this_list = $(this),
+        total_w = 0,
+        loaded = 0,
+        //preload all the images first
+        $images = $this_list.find("img"),
+        total_images = $images.length;
+
+
+      $images.each(function () {
+        var $img = $(this);
+
+        $("<img/>").on("load", function () {
+          ++loaded;
+          if (loaded == total_images) {
+            $this_list
+              .data("current", 0)
+              .children()
+              .each(function () {
+                total_w += $(this).width();
+              });
+
+          }
+          $this_list.css("width", total_w + "px");
+        }).attr("src", $img.attr("src"));
+      });
+
+
+      //next / prev events
+
+      $this_list
+        .parent()
+        .siblings(".next")
+        .bind("click", function (e) {
+          var current = $this_list.data("current");
+          if (current == $this_list.children().length - 1)
+            return false;
+          var next = ++current,
+            ml = -next * $this_list.children(":first").width();
+
+          $this_list
+            .data("current", next)
+            .stop()
+            .animate(
+              {
+                marginLeft: ml + "px",
+              },
+              400
+            );
+          e.preventDefault();
+        })
+        .end()
+        .siblings(".prev")
+        .bind("click", function (e) {
+          var current = $this_list.data("current");
+          if (current == 0) return false;
+          var prev = --current,
+            ml = -prev * $this_list.children(":first").width();
+
+          $this_list
+            .data("current", prev)
+            .stop()
+            .animate(
+              {
+                marginLeft: ml + "px",
+              },
+              400
+            );
+          e.preventDefault();
+        });
+
+    });
+
+
+
+  </script>
+</body>
+
+</html>
