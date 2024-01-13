@@ -36,7 +36,6 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-
       margin: 10px auto 0;
       position: relative;
       left: 360px;
@@ -140,7 +139,44 @@
         text-align: center;
         margin-bottom: 10px;
       }
+
+      nav .start-home,
+      a.nav-link:nth-child(1):hover~.animation {
+        width: 80px;
+        left: 0%;
+        background-color: #1abc9c;
+      }
+
+      nav .start-about,
+      a.nav-link:nth-child(2):hover~.animation {
+        width: 80px;
+        left: 16.67%;
+        background-color: #e74c3c;
+      }
+
+      nav .start-blog,
+      a.nav-link:nth-child(3):hover~.animation {
+        width: 80px;
+        left: 33.33%;
+        background-color: #3498db;
+      }
+
+      nav .start-portefolio,
+      a.nav-link:nth-child(4):hover~.animation {
+        width: 80px;
+        left: 50%;
+        background-color: #9b59b6;
+      }
+
+      nav .start-contact,
+      a.nav-link:nth-child(5):hover~.animation {
+        width: 80px;
+        left: 83.33%;
+        background-color: #e67e22;
+      }
+
     }
+
 
     .n-icon,
     .p-icon {
