@@ -436,7 +436,9 @@
       text-align: center;
       background: #323160;
       color: #fff;
+      font-size: larger;
       padding: 0.5% 0;
+      margin: 0;
     }
 
     .reserver_footer_ct a.primary-link {
@@ -474,7 +476,7 @@
 
     .scroll-to-top {
       position: relative;
-      top: 10px;
+      top: -6px;
       max-height: 2px !important;
       max-width: 2px !important;
       bottom: 5px;
@@ -483,6 +485,18 @@
       color: #fff;
       border-radius: 5px;
       cursor: pointer;
+    }
+
+    .footer {
+      margin: 0;
+      color: #fff;
+      font-size: smaller;
+      text-align: center;
+      background: #323160;
+    }
+
+    .footer p {
+      margin: 0;
     }
   </style>
 </head>
@@ -916,7 +930,7 @@
   </div>
 
   <div class="reserver_footer_ctr">
-    <div class="max_width2">
+    <div class="max_width2 ">
       <p class="title8w">Book a ticket</p>
 
       <div class="reserver_footer" id="footer">
@@ -938,13 +952,15 @@
       <a class="scroll-to-top" href="#top"><img width="30px" height="30px" src="images/up-arrow.png"
           alt="Back to top" /></a>
     </div>
-    <div class="footer">
-      <p class="text-center mt-5">
-        <a href="https://github.com/biotech-Dlvr/Monument" target="_blank">GitHub repository</a>
-        by Azar Delavari
-      </p>
-    </div>
   </div>
+  <div class="footer">
+    <p class="text-center mt-5 text-decoration-color: #bab9bb ">
+      <a href="https://github.com/biotech-Dlvr/Monument" target="_blank"
+        style="color: #bab9bb; font-size: smaller;">GitHub repository</a>
+      by Azar Delavari
+    </p>
+  </div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 
